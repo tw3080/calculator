@@ -1,0 +1,8 @@
+.calc-buttons {
+    display: flex;
+}
+
+.btn {
+    width: 56px;
+    height: 56px;
+}
