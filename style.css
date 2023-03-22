@@ -1,8 +1,24 @@
-.calc-buttons {
+.calc-body {
+    width: 248px;
+    padding: 16px 16px 8px 16px;
+    background-color: pink;
+}
+
+.row {
     display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.calc-screen {
+    flex: 1 0 auto;
+    height: 56px;
+    background-color: #d3d3d3;
+    text-align: right;
 }
 
 .btn {
     width: 56px;
-    height: 56px;
+    height: 42px;
 }
