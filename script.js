@@ -1,8 +1,12 @@
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
+// const decimalButton
+const equalsButton = document.querySelector('#equals');
 const displayText = document.querySelector('#display-text');
-let displayValue = 0;
+let firstNumber = '';
+let secondNumber = '';
 let operatorValue = '';
+let displayValue = '';
 
 const add = function(a, b) {
     return a + b;
@@ -24,38 +28,43 @@ const operate = function(operator, a, b) {
     return operator(a, b);
 }
 
-const getNumber = function(button) {
-    displayValue = button.value;
-    displayText.textContent += displayValue;
-}
+// const getNumber = function(button) {
+//     firstNumber += button.value;
+//     console.log(`First number: ${firstNumber}`);
 
-const getOperator = function(button) {
-    operatorValue = button.value;
-    displayText.textContent += operatorValue;
+//     return firstNumber;
+// }
+
+// const getOperator = function(button) {
+
+// }
+
+// const getOperator = function(button) {
+//     operatorValue = button.value;
+//     displayText.textContent = operatorValue;
+// }
+
+const updateDisplay = function(value) {
+    displayValue += value;
+    displayText.textContent = displayValue;
+    console.log(`Display value: ${displayValue}`);
 }
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        getNumber(button);
+        updateDisplay(button.value);
+        // const number = getNumber(button);
+        // updateDisplay(number);
+
+        // updateDisplay(getNumber(button));
     });
 });
 
-operatorButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        getOperator(button);
-    });
-});
-
-// buttons.forEach(button => {
+// operatorButtons.forEach(button => {
 //     button.addEventListener('click', () => {
-//         displayValue = button.value;
-//         displayText.textContent += displayValue;
-//         console.log(displayValue);
-//     });
-// });
-
-// buttons.forEach(button => {
-//     button.addEventListener('click', function(e) {
-//         console.log(e);
+//         firstNumber = displayValue;
+//         console.log(`First number: ${firstNumber}`);
+//         operatorValue = button.value;
+//         updateDisplay(button.innerText);
 //     });
 // });
