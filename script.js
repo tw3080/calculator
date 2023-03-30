@@ -1,12 +1,11 @@
-const numberButtons = document.querySelectorAll('.number');
-const operatorButtons = document.querySelectorAll('.operator');
-// const decimalButton
-const equalsButton = document.querySelector('#equals');
-const displayText = document.querySelector('#display-text');
-let firstNumber = '';
-let secondNumber = '';
-let operatorValue = '';
-let displayValue = '';
+const buttons = document.querySelectorAll('button');
+const display = document.querySelector('#display');
+let displayValue = display.textContent;
+let operand1;
+let operand2;
+let operatorChoice;
+let isOperator;
+
 
 const add = function(a, b) {
     return a + b;
@@ -25,46 +24,55 @@ const divide = function(a, b) {
 }
 
 const operate = function(operator, a, b) {
-    return operator(a, b);
+    switch (operator) {
+        case 'add':
+            return add(a, b);
+        case 'subtract':
+            return subtract(a, b);
+        case 'multiply':
+            return multiply(a, b);
+        case 'divide':
+            return divide(a, b);
+    }
 }
-
-// const getNumber = function(button) {
-//     firstNumber += button.value;
-//     console.log(`First number: ${firstNumber}`);
-
-//     return firstNumber;
-// }
-
-// const getOperator = function(button) {
-
-// }
-
-// const getOperator = function(button) {
-//     operatorValue = button.value;
-//     displayText.textContent = operatorValue;
-// }
 
 const updateDisplay = function(value) {
-    displayValue += value;
-    displayText.textContent = displayValue;
-    console.log(`Display value: ${displayValue}`);
+    if (displayValue === '0' || isOperator) {
+        displayValue = value;
+    } else {
+        displayValue += value;
+    }
+
+    display.textContent = displayValue;
 }
 
-numberButtons.forEach(button => {
+buttons.forEach(button => {
     button.addEventListener('click', () => {
-        updateDisplay(button.value);
-        // const number = getNumber(button);
-        // updateDisplay(number);
+        if (/[0-9]/.test(button.value)) {
+            updateDisplay(button.value);
+            isOperator = false;
+        }
 
-        // updateDisplay(getNumber(button));
+        if (
+            button.value === 'add' ||
+            button.value === 'subtract' ||
+            button.value === 'multiply' ||
+            button.value === 'divide'
+        ) {
+            operand1 = displayValue;
+            operatorChoice = button.value;
+            isOperator = true;
+
+            console.log(`Operand 1: ${operand1}`);
+            console.log(`Operator: ${operatorChoice}`);
+        }
+
+        if (button.value === 'equals') {
+            operand2 = displayValue;
+            display.textContent = operate(operatorChoice, operand1, operand2);
+
+            console.log(`Operand 2: ${operand2}`);
+            console.log(`Result: ${operate(operatorChoice, operand1, operand2)}`);
+        }
     });
 });
-
-// operatorButtons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         firstNumber = displayValue;
-//         console.log(`First number: ${firstNumber}`);
-//         operatorValue = button.value;
-//         updateDisplay(button.innerText);
-//     });
-// });
