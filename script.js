@@ -59,7 +59,7 @@ buttons.forEach(button => {
             button.value === 'multiply' ||
             button.value === 'divide'
         ) {
-            operand1 = displayValue;
+            operand1 = +displayValue;
             operatorChoice = button.value;
             isOperator = true;
 
@@ -68,7 +68,7 @@ buttons.forEach(button => {
         }
 
         if (button.value === 'equals') {
-            operand2 = displayValue;
+            operand2 = +displayValue;
             display.textContent = operate(operatorChoice, operand1, operand2);
 
             console.log(`Operand 2: ${operand2}`);
