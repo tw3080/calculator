@@ -24,27 +24,20 @@ buttons.forEach(button => {
             button.value === 'multiply' ||
             button.value === 'divide'
         ) {
-            console.log('---');
-            
             isOperator = true;
 
             if (!num1 || !operatorChoice) {
                 num1 = +displayValue;
-                console.log(`INITIALIZE num1: ${num1}`);
             } else {
                 evaluate();
 
                 num1 = result;
-                console.log(`REPLACE num1: ${num1}`);
             }
 
             operatorChoice = button.value;
-            console.log(`operator: ${operatorChoice}`);
         }
 
         if (button.value === 'equals') {
-            console.log('---');
-
             isOperator = true;
 
             if (!num1 || !operatorChoice) {
@@ -53,7 +46,6 @@ buttons.forEach(button => {
                 evaluate();
 
                 operatorChoice = '';
-                console.log(`CLEAR operator`);
             }
         }
 
@@ -70,10 +62,7 @@ const evaluate = function() {
     }
 
     num2 = +displayValue;
-    console.log(`INITIALIZE num2: ${num2}`);
-
     result = operate(operatorChoice, num1, num2);
-    console.log(`INITIALIZE result: ${result}`);
 
     updateDisplay(result);
 }
@@ -86,7 +75,6 @@ const updateDisplay = function(value) {
     }
 
     display.textContent = displayValue;
-    console.log(`Display value: ${displayValue}`);
 }
 
 const clear = function() {
